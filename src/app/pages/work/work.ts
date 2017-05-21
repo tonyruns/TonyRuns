@@ -112,6 +112,16 @@ export class WorkComponent {
     crd:  {lat: 41.8500300, lng: -87.6500500},
     time: "May 2016 - August 2016",
     marker: null
+  }, {
+    id:5,
+    company: "Gametime United",
+    title: "Backend Engineer",
+    description: `<p>
+                  </p>`,
+    location: "San Francisco, CA",
+    crd: {lat: 37.7857682, lng: -122.4075362},
+    time: "January 2017 - April 2017",
+    marker: null
   }];
 
   ngOnInit(){
@@ -133,19 +143,26 @@ export class WorkComponent {
         .open();
   }
   attachDescriptions(){
-    this.jobs[0].marker.addListener('click', ()=>{
-      document.getElementById('1').click();
-    });
+    for (let i = 0; i < this.jobs.length; i++ ) {
+      (function(i, jobs){
+        jobs[i].marker.addListener('click', ()=>{
+          document.getElementById(`${i+1}`).click();
+        })
+      })(i, this.jobs);
+    }
+    // this.jobs[0].marker.addListener('click', ()=>{
+    //   document.getElementById('1').click();
+    // });
 
-    this.jobs[1].marker.addListener('click', ()=>{
-      document.getElementById('2').click();
-    });
-    this.jobs[2].marker.addListener('click', ()=>{
-      document.getElementById('3').click();
-    });
-    this.jobs[3].marker.addListener('click', ()=>{
-      document.getElementById('4').click();
-    });
+    // this.jobs[1].marker.addListener('click', ()=>{
+    //   document.getElementById('2').click();
+    // });
+    // this.jobs[2].marker.addListener('click', ()=>{
+    //   document.getElementById('3').click();
+    // });
+    // this.jobs[3].marker.addListener('click', ()=>{
+    //   document.getElementById('4').click();
+    // });
   }
 
 
